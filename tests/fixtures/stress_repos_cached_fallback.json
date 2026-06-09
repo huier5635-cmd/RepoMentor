@@ -1,0 +1,44 @@
+[
+  {
+    "name": "resilience-copilot-gemma4",
+    "repo_url": "https://github.com/huier5635-cmd/resilience-copilot-gemma4",
+    "category": "current-sample",
+    "expected": "success"
+  },
+  {
+    "name": "flask",
+    "repo_url": "https://github.com/pallets/flask",
+    "category": "python-web-framework",
+    "expected": "success"
+  },
+  {
+    "name": "academic-paper-workflow-skill",
+    "repo_url": "C:/Users/Liaoke/Desktop/RepoMentor 多智能体仓库学习助手/repomentor/backend/.repomentor_cache/repos/huier5635-cmd-academic-paper-workflow-skill-005ec74f4af7",
+    "category": "cached-public-fallback",
+    "expected": "success"
+  },
+  {
+    "name": "missing-repository",
+    "repo_url": "https://github.com/not-exist-owner/not-exist-repo",
+    "category": "invalid",
+    "expected": "error"
+  },
+  {
+    "name": "empty-url",
+    "repo_url": "",
+    "category": "invalid",
+    "expected": "error"
+  },
+  {
+    "name": "non-github-url",
+    "repo_url": "https://example.com/test",
+    "category": "invalid",
+    "expected": "error"
+  },
+  {
+    "name": "bad-format-url",
+    "repo_url": "github.com/bad",
+    "category": "invalid",
+    "expected": "error"
+  }
+]

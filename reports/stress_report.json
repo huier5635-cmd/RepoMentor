@@ -1,0 +1,3307 @@
+{
+  "generated_at": "2026-06-09T09:45:16.706967+00:00",
+  "environment": {
+    "base_url": "http://127.0.0.1:8000",
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "provider_requested_by_test": "mock",
+    "orchestrator_requested_by_test": "legacy",
+    "concurrency": 2,
+    "skip_large": true
+  },
+  "preflight": {
+    "health": {
+      "status_code": 200,
+      "body": {
+        "status": "ok"
+      },
+      "elapsed_seconds": 0.15786810000281548
+    },
+    "graph_status": {
+      "status_code": 200,
+      "body": {
+        "langgraph_enabled": false,
+        "checkpoint_backend": "memory",
+        "checkpoint_available": true,
+        "active_orchestrator": "legacy",
+        "warning": "",
+        "trace_enabled": true,
+        "max_retries": 2,
+        "graphs": [
+          {
+            "name": "repo_analysis_graph",
+            "nodes": [
+              "init_analysis_node",
+              "repo_fetch_node",
+              "repo_graph_node",
+              "symbol_node",
+              "dependency_node",
+              "docs_node",
+              "test_node",
+              "issue_node",
+              "development_workflow_node",
+              "code_explanation_node",
+              "build_hybrid_index_node",
+              "finalize_analysis_node"
+            ]
+          },
+          {
+            "name": "qa_graph",
+            "nodes": [
+              "init_qa_node",
+              "intent_router_node",
+              "retrieval_node",
+              "worker_context_node",
+              "answer_generator_node",
+              "evaluator_node",
+              "optimizer_node",
+              "final_answer_node"
+            ]
+          }
+        ],
+        "known_threads": []
+      },
+      "elapsed_seconds": 0.0034996000031242147
+    },
+    "model_status_before": {
+      "provider_requested": "deepseek",
+      "provider_active": "deepseek",
+      "model": "deepseek-chat",
+      "requested_model": "deepseek-chat",
+      "base_url": "https://api.deepseek.com",
+      "api_key_configured": true,
+      "api_key_masked": "sk-****be96",
+      "fallback_to_mock": false,
+      "reason": null,
+      "last_call": null,
+      "provider": "deepseek",
+      "has_api_key": true,
+      "uses_external_llm": true,
+      "ready": true
+    },
+    "model_status_code": 200,
+    "model_status_elapsed_seconds": 0.002776699999230914,
+    "model_config": {
+      "status_code": 200,
+      "body": {
+        "provider_requested": "mock",
+        "provider_active": "mock",
+        "model": "mock-deterministic",
+        "requested_model": "mock-deterministic",
+        "base_url": null,
+        "api_key_configured": false,
+        "api_key_masked": null,
+        "fallback_to_mock": false,
+        "reason": null,
+        "last_call": null,
+        "provider": "mock",
+        "has_api_key": false,
+        "uses_external_llm": false,
+        "ready": true
+      }
+    },
+    "model_mode_note": "no-real-llm baseline",
+    "model_test": {
+      "status_code": 200,
+      "body": {
+        "success": true,
+        "provider_requested": "mock",
+        "provider_active": "mock",
+        "model": "mock-deterministic",
+        "message": "MockProvider 可用。"
+      },
+      "elapsed_seconds": 0.002815200001350604
+    }
+  },
+  "repositories": [
+    {
+      "name": "resilience-copilot-gemma4",
+      "repo_url": "https://github.com/huier5635-cmd/resilience-copilot-gemma4",
+      "category": "current-sample",
+      "expected": "success",
+      "warnings": [],
+      "errors": [],
+      "analyze_status_code": 200,
+      "elapsed_seconds": 3.661,
+      "analyze_status": "success",
+      "repo_id": "f89b095c9044",
+      "analysis_session_id": "4ec5a242-f762-4278-99c0-d2ec1b5e0f68",
+      "files_count": 64,
+      "docs_files_count": 20,
+      "test_files_count": 6,
+      "quality_commands_count": 9,
+      "setup_commands_count": 1,
+      "run_commands_count": 6,
+      "test_commands_count": 2,
+      "build_commands_count": 0,
+      "lint_commands_count": 0,
+      "format_commands_count": 0,
+      "open_issues_count": 0,
+      "worker_success_count": 7,
+      "worker_partial_count": 1,
+      "worker_failed_count": 0,
+      "graph_status_code": 200,
+      "data_layer_status_code": 200,
+      "repository_graph_status_code": 200,
+      "symbols_count": 221,
+      "imports_count": 38,
+      "unresolved_imports_count": 0,
+      "docs_edges_count": 50,
+      "test_edges_count": 15,
+      "docs_chunks_count": 781,
+      "data_layer_checks": {
+        "summary": {
+          "files": 64,
+          "symbols": 221,
+          "imports": 38,
+          "tests": 15,
+          "docs": 50,
+          "doc_files": 20,
+          "doc_edges": 50,
+          "build_scripts": 0,
+          "languages": {
+            "python": 30,
+            "markdown": 18,
+            "jsonl": 4,
+            "json": 3,
+            "javascript": 1,
+            "bibtex": 1,
+            "html": 1,
+            "text": 1,
+            "css": 1
+          },
+          "primary_language": "python",
+          "core_directories": [
+            "docs",
+            "src",
+            "scripts",
+            "tests",
+            "data",
+            "knowledge_base",
+            "LICENSE"
+          ],
+          "key_files": [
+            "README.md",
+            "requirements.txt"
+          ],
+          "readme_exists": true,
+          "quality_commands": 9,
+          "contributing_rules": 84,
+          "ci_rules": 0,
+          "development_workflow": "ready",
+          "new_contributor_checklist": 4,
+          "entrypoints": [
+            {
+              "path": "scripts/run_academic_eval.py",
+              "reason": "命令中直接引用的脚本文件",
+              "source": "run command: python scripts\\run_academic_eval.py",
+              "confidence": "high"
+            },
+            {
+              "path": "scripts/run_demo.py",
+              "reason": "命令中直接引用的脚本文件",
+              "source": "run command: python scripts\\run_demo.py",
+              "confidence": "high"
+            },
+            {
+              "path": "scripts/run_eval.py",
+              "reason": "命令中直接引用的脚本文件",
+              "source": "run command: python scripts\\run_eval.py",
+              "confidence": "high"
+            },
+            {
+              "path": "scripts/run_local_validation.py",
+              "reason": "命令中直接引用的脚本文件",
+              "source": "run command: python scripts\\run_local_validation.py",
+              "confidence": "high"
+            },
+            {
+              "path": "scripts/run_stress_test.py",
+              "reason": "命令中直接引用的脚本文件",
+              "source": "test command: python scripts\\run_stress_test.py",
+              "confidence": "high"
+            },
+            {
+              "path": "src/agent/__main__.py",
+              "reason": "README/docs 中 python -m src.agent 对应的模块入口",
+              "source": "README.md",
+              "confidence": "high"
+            },
+            {
+              "path": "app.js",
+              "reason": "常见应用入口文件名",
+              "source": "app.js",
+              "confidence": "medium"
+            },
+            {
+              "path": "src/__init__.py",
+              "reason": "__init__.py 仅作为 Python package entry，不作为主流程入口",
+              "source": "src/__init__.py",
+              "confidence": "low"
+            },
+            {
+              "path": "src/agent/__init__.py",
+              "reason": "__init__.py 仅作为 Python package entry，不作为主流程入口",
+              "source": "src/agent/__init__.py",
+              "confidence": "low"
+            },
+            {
+              "path": "src/evaluation/__init__.py",
+              "reason": "__init__.py 仅作为 Python package entry，不作为主流程入口",
+              "source": "src/evaluation/__init__.py",
+              "confidence": "low"
+            }
+          ],
+          "setup_commands": [
+            "pip install -r requirements.txt"
+          ],
+          "run_commands": [
+            "python scripts/run_academic_eval.py",
+            "python scripts/run_demo.py",
+            "python scripts/run_demo.py --case-id bench_001_oxygen_power_outage",
+            "python scripts/run_demo.py --scenario \"An older adult uses oxygen and the backup battery is empty during a power outage.\"",
+            "python scripts/run_eval.py",
+            "python scripts/run_local_validation.py"
+          ],
+          "test_commands": [
+            "python -m pytest tests",
+            "python scripts/run_stress_test.py"
+          ],
+          "build_commands": [],
+          "lint_commands": [],
+          "format_commands": [],
+          "type_check_commands": []
+        },
+        "details": {
+          "symbols": 221,
+          "imports": 38,
+          "tests": 15,
+          "docs": 50,
+          "quality_commands": 9
+        },
+        "mismatches": [],
+        "development_workflow_state": "ready"
+      },
+      "learning_path": {
+        "status_code": 200,
+        "elapsed_seconds": 0.008,
+        "errors": [],
+        "warnings": [],
+        "steps_count": 7,
+        "evidence_steps_count": 7,
+        "required_coverage": {
+          "README": true,
+          "启动": true,
+          "核心": true,
+          "测试": true,
+          "开发": true,
+          "任务": false
+        },
+        "self_check": {
+          "passed": true,
+          "evidence_coverage": 1.0,
+          "hallucination_risks": [],
+          "missing_evidence": [],
+          "missing_file_uncertainty": [],
+          "missing_command_uncertainty": [],
+          "hallucinated_file": [],
+          "hallucinated_command": [],
+          "hallucinated_issue": [],
+          "conflicts": [],
+          "suggested_action": "accept"
+        }
+      },
+      "development_workflow": {
+        "status_code": 200,
+        "elapsed_seconds": 0.011,
+        "errors": [],
+        "warnings": [],
+        "quality_commands_count": 9,
+        "setup_steps_count": 2,
+        "development_commands_count": 1,
+        "test_commands_count": 2,
+        "lint_commands_count": 0,
+        "format_commands_count": 0,
+        "type_check_commands_count": 0,
+        "build_commands_count": 0,
+        "contribution_rules_count": 5,
+        "pull_request_rules_count": 0,
+        "ci_rules_count": 0,
+        "code_style_rules_count": 0,
+        "uncertainties_count": 5,
+        "self_check": {
+          "passed": false,
+          "evidence_coverage": 0.2857142857142857,
+          "hallucination_risks": [
+            "lint is mentioned but no lint command evidence was found",
+            "format is mentioned but no format command evidence was found"
+          ],
+          "missing_evidence": [
+            "conclusion mentions 配置文件 but has no config/code evidence",
+            "evidence_code is empty; do not claim config/build directly supports the conclusion"
+          ],
+          "missing_file_uncertainty": [
+            "CONTRIBUTING.md"
+          ],
+          "missing_command_uncertainty": [
+            "lint",
+            "format"
+          ],
+          "hallucinated_file": [],
+          "hallucinated_command": [],
+          "hallucinated_issue": [],
+          "conflicts": [],
+          "suggested_action": "lower_confidence"
+        }
+      },
+      "issue_recommendations": {
+        "status_code": 200,
+        "elapsed_seconds": 0.004,
+        "errors": [],
+        "warnings": [],
+        "items_count": 6,
+        "internal_tasks_count": 6,
+        "github_issues_count": 0,
+        "self_check": {
+          "passed": true,
+          "evidence_coverage": 0.65,
+          "hallucination_risks": [],
+          "missing_evidence": [
+            "当前仓库没有 GitHub open issue 数据"
+          ],
+          "missing_file_uncertainty": [],
+          "missing_command_uncertainty": [],
+          "hallucinated_file": [],
+          "hallucinated_command": [],
+          "hallucinated_issue": [],
+          "conflicts": [],
+          "suggested_action": "accept"
+        }
+      },
+      "qa_results": [
+        {
+          "question": "这个仓库是干什么的？",
+          "status_code": 200,
+          "elapsed_seconds": 0.035,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "overview",
+          "evidence_count": 3,
+          "evidence_counts": {
+            "docs": 3,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 0.75,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python scripts/run_academic_eval.py",
+            "python scripts/run_demo.py",
+            "python scripts/run_demo.py --case-id bench_001_oxygen_power_outage",
+            "python scripts/run_demo.py --scenario \"An older adult uses oxygen and the backup battery is empty during a power outage.\"",
+            "python scripts/run_eval.py",
+            "python scripts/run_local_validation.py",
+            "python -m pytest tests",
+            "python scripts/run_stress_test.py"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "general_qa",
+            "evidence_count": 3,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "这个项目怎么启动？",
+          "status_code": 200,
+          "elapsed_seconds": 0.03,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "setup_run",
+          "evidence_count": 27,
+          "evidence_counts": {
+            "docs": 11,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 3,
+            "commands": 13,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pip install -r requirements.txt",
+            "python scripts/run_demo.py",
+            "python scripts/run_demo.py --case-id bench_001_oxygen_power_outage",
+            "python scripts/run_demo.py --scenario \"An older adult uses oxygen and the backup battery is empty during a power outage.\"",
+            "python scripts/run_academic_eval.py",
+            "python scripts/run_eval.py",
+            "python scripts/run_local_validation.py",
+            "python scripts/run_stress_test.py",
+            "python -m pytest tests"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "setup_run",
+            "evidence_count": 27,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "怎么安装依赖？",
+          "status_code": 200,
+          "elapsed_seconds": 0.019,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "setup_run",
+          "evidence_count": 27,
+          "evidence_counts": {
+            "docs": 11,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 3,
+            "commands": 13,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pip install -r requirements.txt",
+            "python scripts/run_demo.py",
+            "python scripts/run_demo.py --case-id bench_001_oxygen_power_outage",
+            "python scripts/run_demo.py --scenario \"An older adult uses oxygen and the backup battery is empty during a power outage.\"",
+            "python scripts/run_academic_eval.py",
+            "python scripts/run_eval.py",
+            "python scripts/run_local_validation.py",
+            "python scripts/run_stress_test.py",
+            "python -m pytest tests"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "setup_run",
+            "evidence_count": 27,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "怎么运行测试？",
+          "status_code": 200,
+          "elapsed_seconds": 0.018,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "setup_run",
+          "evidence_count": 27,
+          "evidence_counts": {
+            "docs": 11,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 3,
+            "commands": 13,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pip install -r requirements.txt",
+            "python scripts/run_demo.py",
+            "python scripts/run_demo.py --case-id bench_001_oxygen_power_outage",
+            "python scripts/run_demo.py --scenario \"An older adult uses oxygen and the backup battery is empty during a power outage.\"",
+            "python scripts/run_academic_eval.py",
+            "python scripts/run_eval.py",
+            "python scripts/run_local_validation.py",
+            "python scripts/run_stress_test.py",
+            "python -m pytest tests"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "setup_run",
+            "evidence_count": 27,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "核心模块有哪些？",
+          "status_code": 200,
+          "elapsed_seconds": 0.017,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "core_modules",
+          "evidence_count": 15,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 9,
+            "issues": 0,
+            "graph": 6,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python -m pytest tests",
+            "python scripts/run_stress_test.py"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "code_explanation",
+            "evidence_count": 15,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "我应该按什么顺序学习？",
+          "status_code": 200,
+          "elapsed_seconds": 0.042,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "learning_path",
+          "evidence_count": 34,
+          "evidence_counts": {
+            "docs": 11,
+            "code": 5,
+            "issues": 0,
+            "graph": 4,
+            "workflow": 2,
+            "commands": 9,
+            "internal_tasks": 3
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python -m pytest tests",
+            "python scripts/run_stress_test.py"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "learning_path",
+            "evidence_count": 34,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "开发流程和代码规范是什么？",
+          "status_code": 200,
+          "elapsed_seconds": 0.039,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "development_workflow",
+          "evidence_count": 29,
+          "evidence_counts": {
+            "docs": 11,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 10,
+            "commands": 8,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": false,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [
+              "lint is mentioned but no lint command evidence was found",
+              "format is mentioned but no format command evidence was found"
+            ],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [
+              "CONTRIBUTING.md"
+            ],
+            "missing_command_uncertainty": [
+              "lint",
+              "format"
+            ],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "lower_confidence"
+          },
+          "self_check_passed": false,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 2,
+          "verifiable_commands": [
+            "pip install -r requirements.txt",
+            "python scripts/run_stress_test.py",
+            "python -m pytest tests"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "development_workflow",
+            "evidence_count": 29,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "修改一个核心文件后应该跑哪些测试？",
+          "status_code": 200,
+          "elapsed_seconds": 0.017,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "general",
+          "evidence_count": 15,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 9,
+            "issues": 0,
+            "graph": 6,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python -m pytest tests",
+            "python scripts/run_stress_test.py"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "test_mapping",
+            "evidence_count": 15,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "适合新手的任务有哪些？",
+          "status_code": 200,
+          "elapsed_seconds": 0.019,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "beginner_tasks",
+          "evidence_count": 5,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 5
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python -m pytest tests",
+            "python scripts/run_stress_test.py"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "issue_recommendation",
+            "evidence_count": 5,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "这个项目有没有 CI / lint / format？",
+          "status_code": 200,
+          "elapsed_seconds": 0.046,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "development_workflow",
+          "evidence_count": 29,
+          "evidence_counts": {
+            "docs": 11,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 10,
+            "commands": 8,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": false,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [
+              "lint is mentioned but no lint command evidence was found",
+              "format is mentioned but no format command evidence was found"
+            ],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [
+              "CONTRIBUTING.md"
+            ],
+            "missing_command_uncertainty": [
+              "lint",
+              "format"
+            ],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "lower_confidence"
+          },
+          "self_check_passed": false,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 2,
+          "verifiable_commands": [
+            "pip install -r requirements.txt",
+            "python scripts/run_stress_test.py",
+            "python -m pytest tests"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "development_workflow",
+            "evidence_count": 29,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "入口文件在哪里？",
+          "status_code": 200,
+          "elapsed_seconds": 0.019,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "entrypoints",
+          "evidence_count": 14,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 14,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python scripts/run_academic_eval.py",
+            "python scripts/run_demo.py",
+            "python scripts/run_demo.py --case-id bench_001_oxygen_power_outage",
+            "python scripts/run_demo.py --scenario \"An older adult uses oxygen and the backup battery is empty during a power outage.\""
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "general_qa",
+            "evidence_count": 14,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "这个仓库有哪些文档值得先看？",
+          "status_code": 200,
+          "elapsed_seconds": 0.019,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "docs_recommendation",
+          "evidence_count": 8,
+          "evidence_counts": {
+            "docs": 8,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 0.8888888888888888,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python scripts/run_academic_eval.py",
+            "python scripts/run_demo.py",
+            "python -m pytest tests",
+            "python scripts/run_stress_test.py"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "general_qa",
+            "evidence_count": 8,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        }
+      ],
+      "debug_console_checks": {
+        "errors": [],
+        "warnings": [],
+        "graph_status": {
+          "status_code": 200,
+          "elapsed_seconds": 0.004
+        },
+        "agent_flow": {
+          "status_code": 200,
+          "elapsed_seconds": 0.003
+        },
+        "worker_outputs": {
+          "status_code": 200,
+          "elapsed_seconds": 0.003
+        },
+        "data_layer": {
+          "status_code": 200,
+          "elapsed_seconds": 0.009
+        },
+        "repository_graph": {
+          "status_code": 200,
+          "elapsed_seconds": 0.008
+        },
+        "analysis_graph_state": {
+          "status_code": 200,
+          "elapsed_seconds": 0.003
+        },
+        "analysis_graph_trace": {
+          "status_code": 200,
+          "elapsed_seconds": 0.003
+        },
+        "shared_memory": {
+          "status_code": 200,
+          "elapsed_seconds": 0.022
+        },
+        "retrieval_trace": {
+          "status_code": 200,
+          "elapsed_seconds": 0.014
+        },
+        "self_check": {
+          "status_code": 200,
+          "elapsed_seconds": 0.016
+        },
+        "final_answer_json": {
+          "status_code": 200,
+          "elapsed_seconds": 0.003
+        },
+        "qa_graph_state": {
+          "status_code": 200,
+          "elapsed_seconds": 0.027
+        },
+        "qa_graph_trace": {
+          "status_code": 200,
+          "elapsed_seconds": 0.015
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "flask",
+      "repo_url": "https://github.com/pallets/flask",
+      "category": "python-web-framework",
+      "expected": "success",
+      "warnings": [],
+      "errors": [],
+      "analyze_status_code": 200,
+      "elapsed_seconds": 22.079,
+      "analyze_status": "success",
+      "repo_id": "654502453668",
+      "analysis_session_id": "0a1bfd1d-c4d5-421f-a6c6-594ad4a2ab77",
+      "files_count": 235,
+      "docs_files_count": 100,
+      "test_files_count": 68,
+      "quality_commands_count": 22,
+      "setup_commands_count": 15,
+      "run_commands_count": 1,
+      "test_commands_count": 2,
+      "build_commands_count": 1,
+      "lint_commands_count": 1,
+      "format_commands_count": 0,
+      "open_issues_count": 0,
+      "worker_success_count": 7,
+      "worker_partial_count": 1,
+      "worker_failed_count": 0,
+      "graph_status_code": 200,
+      "data_layer_status_code": 200,
+      "repository_graph_status_code": 200,
+      "symbols_count": 926,
+      "imports_count": 102,
+      "unresolved_imports_count": 0,
+      "docs_edges_count": 731,
+      "test_edges_count": 154,
+      "docs_chunks_count": 4313,
+      "data_layer_checks": {
+        "summary": {
+          "files": 235,
+          "symbols": 926,
+          "imports": 102,
+          "tests": 154,
+          "docs": 731,
+          "doc_files": 100,
+          "doc_edges": 731,
+          "build_scripts": 5,
+          "languages": {
+            "python": 83,
+            "restructuredtext": 79,
+            "html": 20,
+            "text": 10,
+            "yaml": 8,
+            "markdown": 6,
+            "toml": 5,
+            "json": 2,
+            "css": 2,
+            "shell": 1
+          },
+          "primary_language": "python",
+          "core_directories": [
+            "docs",
+            "tests",
+            "examples",
+            "src"
+          ],
+          "key_files": [
+            ".github/workflows/lock.yaml",
+            ".github/workflows/pre-commit.yaml",
+            ".github/workflows/publish.yaml",
+            ".github/workflows/tests.yaml",
+            ".github/workflows/zizmor.yaml",
+            "README.md",
+            "docs/Makefile",
+            "examples/celery/README.md",
+            "examples/celery/pyproject.toml",
+            "examples/celery/requirements.txt",
+            "examples/javascript/pyproject.toml",
+            "examples/tutorial/pyproject.toml",
+            "pyproject.toml",
+            "src/flask/sansio/README.md"
+          ],
+          "readme_exists": true,
+          "quality_commands": 22,
+          "contributing_rules": 201,
+          "ci_rules": 5,
+          "development_workflow": "ready",
+          "new_contributor_checklist": 8,
+          "entrypoints": [
+            {
+              "path": "src/flask/__main__.py",
+              "reason": "python -m flask 对应的模块入口",
+              "source": "run command: python -m flask",
+              "confidence": "high"
+            },
+            {
+              "path": "src/flask/app.py",
+              "reason": "常见应用入口文件名",
+              "source": "src/flask/app.py",
+              "confidence": "medium"
+            },
+            {
+              "path": "src/flask/cli.py",
+              "reason": "常见应用入口文件名",
+              "source": "src/flask/cli.py",
+              "confidence": "medium"
+            },
+            {
+              "path": "src/flask/sansio/app.py",
+              "reason": "常见应用入口文件名",
+              "source": "src/flask/sansio/app.py",
+              "confidence": "medium"
+            },
+            {
+              "path": "tests/test_apps/cliapp/app.py",
+              "reason": "常见应用入口文件名",
+              "source": "tests/test_apps/cliapp/app.py",
+              "confidence": "medium"
+            },
+            {
+              "path": "src/flask/__init__.py",
+              "reason": "__init__.py 仅作为 Python package entry，不作为主流程入口",
+              "source": "src/flask/__init__.py",
+              "confidence": "low"
+            }
+          ],
+          "setup_commands": [
+            "pip install -e .",
+            "pip install . # install your application",
+            "pip install gevent",
+            "pip install gunicorn",
+            "pip install mod_wsgi",
+            "pip install pyuwsgi",
+            "pip install uwsgi",
+            "pip install --no-binary pyuwsgi pyuwsgi",
+            "pip install waitress",
+            "pip install Flask",
+            "pip install pytest",
+            "pip install build",
+            "pip install flaskr-1.0.0-py3-none-any.whl",
+            "pip install pytest coverage",
+            "pip install -r requirements.txt"
+          ],
+          "run_commands": [
+            "python -m flask"
+          ],
+          "test_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "build_commands": [
+            "python -m build --wheel"
+          ],
+          "lint_commands": [
+            "ruff check ."
+          ],
+          "format_commands": [],
+          "type_check_commands": [
+            "mypy ."
+          ]
+        },
+        "details": {
+          "symbols": 926,
+          "imports": 102,
+          "tests": 154,
+          "docs": 731,
+          "quality_commands": 22
+        },
+        "mismatches": [],
+        "development_workflow_state": "ready"
+      },
+      "learning_path": {
+        "status_code": 200,
+        "elapsed_seconds": 0.008,
+        "errors": [],
+        "warnings": [],
+        "steps_count": 7,
+        "evidence_steps_count": 7,
+        "required_coverage": {
+          "README": true,
+          "启动": true,
+          "核心": true,
+          "测试": true,
+          "开发": true,
+          "任务": false
+        },
+        "self_check": {
+          "passed": true,
+          "evidence_coverage": 1.0,
+          "hallucination_risks": [],
+          "missing_evidence": [],
+          "missing_file_uncertainty": [],
+          "missing_command_uncertainty": [],
+          "hallucinated_file": [],
+          "hallucinated_command": [],
+          "hallucinated_issue": [],
+          "conflicts": [],
+          "suggested_action": "accept"
+        }
+      },
+      "development_workflow": {
+        "status_code": 200,
+        "elapsed_seconds": 0.033,
+        "errors": [],
+        "warnings": [],
+        "quality_commands_count": 22,
+        "setup_steps_count": 6,
+        "development_commands_count": 16,
+        "test_commands_count": 2,
+        "lint_commands_count": 1,
+        "format_commands_count": 0,
+        "type_check_commands_count": 1,
+        "build_commands_count": 1,
+        "contribution_rules_count": 6,
+        "pull_request_rules_count": 1,
+        "ci_rules_count": 5,
+        "code_style_rules_count": 22,
+        "uncertainties_count": 2,
+        "self_check": {
+          "passed": false,
+          "evidence_coverage": 1.0,
+          "hallucination_risks": [
+            "format is mentioned but no format command evidence was found"
+          ],
+          "missing_evidence": [
+            "conclusion mentions 配置文件 but has no config/code evidence",
+            "evidence_code is empty; do not claim config/build directly supports the conclusion"
+          ],
+          "missing_file_uncertainty": [
+            "CONTRIBUTING.md"
+          ],
+          "missing_command_uncertainty": [
+            "format"
+          ],
+          "hallucinated_file": [],
+          "hallucinated_command": [],
+          "hallucinated_issue": [],
+          "conflicts": [],
+          "suggested_action": "lower_confidence"
+        }
+      },
+      "issue_recommendations": {
+        "status_code": 200,
+        "elapsed_seconds": 0.005,
+        "errors": [],
+        "warnings": [],
+        "items_count": 3,
+        "internal_tasks_count": 3,
+        "github_issues_count": 0,
+        "self_check": {
+          "passed": true,
+          "evidence_coverage": 0.65,
+          "hallucination_risks": [],
+          "missing_evidence": [
+            "当前仓库没有 GitHub open issue 数据"
+          ],
+          "missing_file_uncertainty": [],
+          "missing_command_uncertainty": [],
+          "hallucinated_file": [],
+          "hallucinated_command": [],
+          "hallucinated_issue": [],
+          "conflicts": [],
+          "suggested_action": "accept"
+        }
+      },
+      "qa_results": [
+        {
+          "question": "这个仓库是干什么的？",
+          "status_code": 200,
+          "elapsed_seconds": 0.073,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "overview",
+          "evidence_count": 5,
+          "evidence_counts": {
+            "docs": 5,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python -m flask",
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "general_qa",
+            "evidence_count": 5,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "这个项目怎么启动？",
+          "status_code": 200,
+          "elapsed_seconds": 0.079,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "setup_run",
+          "evidence_count": 40,
+          "evidence_counts": {
+            "docs": 8,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 10,
+            "commands": 22,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pip install -r requirements.txt",
+            "pip install -e .",
+            "pytest",
+            "python -m build --wheel"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "setup_run",
+            "evidence_count": 40,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "怎么安装依赖？",
+          "status_code": 200,
+          "elapsed_seconds": 0.106,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "setup_run",
+          "evidence_count": 40,
+          "evidence_counts": {
+            "docs": 8,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 10,
+            "commands": 22,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pip install -r requirements.txt",
+            "pip install -e .",
+            "pytest",
+            "python -m build --wheel"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "setup_run",
+            "evidence_count": 40,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "怎么运行测试？",
+          "status_code": 200,
+          "elapsed_seconds": 0.095,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "setup_run",
+          "evidence_count": 40,
+          "evidence_counts": {
+            "docs": 8,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 10,
+            "commands": 22,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pip install -r requirements.txt",
+            "pip install -e .",
+            "pytest",
+            "python -m build --wheel"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "setup_run",
+            "evidence_count": 40,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "核心模块有哪些？",
+          "status_code": 200,
+          "elapsed_seconds": 0.09,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "core_modules",
+          "evidence_count": 13,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 9,
+            "issues": 0,
+            "graph": 4,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "code_explanation",
+            "evidence_count": 13,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "我应该按什么顺序学习？",
+          "status_code": 200,
+          "elapsed_seconds": 0.095,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "learning_path",
+          "evidence_count": 34,
+          "evidence_counts": {
+            "docs": 7,
+            "code": 5,
+            "issues": 0,
+            "graph": 4,
+            "workflow": 9,
+            "commands": 6,
+            "internal_tasks": 3
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "learning_path",
+            "evidence_count": 34,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "开发流程和代码规范是什么？",
+          "status_code": 200,
+          "elapsed_seconds": 0.11,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "development_workflow",
+          "evidence_count": 93,
+          "evidence_counts": {
+            "docs": 14,
+            "code": 1,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 70,
+            "commands": 8,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": false,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [
+              "format is mentioned but no format command evidence was found"
+            ],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [
+              "CONTRIBUTING.md"
+            ],
+            "missing_command_uncertainty": [
+              "format"
+            ],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "lower_confidence"
+          },
+          "self_check_passed": false,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 1,
+          "verifiable_commands": [
+            "pip install . # install your application",
+            "pip install gevent",
+            "pip install gunicorn",
+            "pip install mod_wsgi",
+            "pip install pyuwsgi",
+            "pip install uwsgi",
+            "pip install --no-binary pyuwsgi pyuwsgi",
+            "pip install waitress",
+            "pip install Flask",
+            "pip install pytest",
+            "pip install build",
+            "pip install flaskr-1.0.0-py3-none-any.whl",
+            "pip install -e .",
+            "pip install pytest coverage",
+            "pip install -r requirements.txt",
+            "python -m flask",
+            "pytest",
+            "python -m pytest",
+            "ruff check .",
+            "mypy .",
+            "python -m build --wheel"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "development_workflow",
+            "evidence_count": 93,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "修改一个核心文件后应该跑哪些测试？",
+          "status_code": 200,
+          "elapsed_seconds": 0.1,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "general",
+          "evidence_count": 13,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 9,
+            "issues": 0,
+            "graph": 4,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "test_mapping",
+            "evidence_count": 13,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "适合新手的任务有哪些？",
+          "status_code": 200,
+          "elapsed_seconds": 0.082,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "beginner_tasks",
+          "evidence_count": 5,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 5
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "issue_recommendation",
+            "evidence_count": 5,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "这个项目有没有 CI / lint / format？",
+          "status_code": 200,
+          "elapsed_seconds": 0.096,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "development_workflow",
+          "evidence_count": 93,
+          "evidence_counts": {
+            "docs": 11,
+            "code": 1,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 73,
+            "commands": 8,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": false,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [
+              "format is mentioned but no format command evidence was found"
+            ],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [
+              "CONTRIBUTING.md"
+            ],
+            "missing_command_uncertainty": [
+              "format"
+            ],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "lower_confidence"
+          },
+          "self_check_passed": false,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 1,
+          "verifiable_commands": [
+            "pip install . # install your application",
+            "pip install gevent",
+            "pip install gunicorn",
+            "pip install mod_wsgi",
+            "pip install pyuwsgi",
+            "pip install uwsgi",
+            "pip install --no-binary pyuwsgi pyuwsgi",
+            "pip install waitress",
+            "pip install Flask",
+            "pip install pytest",
+            "pip install build",
+            "pip install flaskr-1.0.0-py3-none-any.whl",
+            "pip install -e .",
+            "pip install pytest coverage",
+            "pip install -r requirements.txt",
+            "python -m flask",
+            "pytest",
+            "python -m pytest",
+            "ruff check .",
+            "mypy .",
+            "python -m build --wheel"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "development_workflow",
+            "evidence_count": 93,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "入口文件在哪里？",
+          "status_code": 200,
+          "elapsed_seconds": 0.087,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "entrypoints",
+          "evidence_count": 6,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 6,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 0.8571428571428571,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python -m flask"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "general_qa",
+            "evidence_count": 6,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "这个仓库有哪些文档值得先看？",
+          "status_code": 200,
+          "elapsed_seconds": 0.099,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "docs_recommendation",
+          "evidence_count": 5,
+          "evidence_counts": {
+            "docs": 5,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 0.5555555555555556,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "python -m flask",
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "general_qa",
+            "evidence_count": 5,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        }
+      ],
+      "debug_console_checks": {
+        "errors": [],
+        "warnings": [],
+        "graph_status": {
+          "status_code": 200,
+          "elapsed_seconds": 0.004
+        },
+        "agent_flow": {
+          "status_code": 200,
+          "elapsed_seconds": 0.003
+        },
+        "worker_outputs": {
+          "status_code": 200,
+          "elapsed_seconds": 0.004
+        },
+        "data_layer": {
+          "status_code": 200,
+          "elapsed_seconds": 0.025
+        },
+        "repository_graph": {
+          "status_code": 200,
+          "elapsed_seconds": 0.045
+        },
+        "analysis_graph_state": {
+          "status_code": 200,
+          "elapsed_seconds": 0.015
+        },
+        "analysis_graph_trace": {
+          "status_code": 200,
+          "elapsed_seconds": 0.004
+        },
+        "shared_memory": {
+          "status_code": 200,
+          "elapsed_seconds": 0.026
+        },
+        "retrieval_trace": {
+          "status_code": 200,
+          "elapsed_seconds": 0.027
+        },
+        "self_check": {
+          "status_code": 200,
+          "elapsed_seconds": 0.015
+        },
+        "final_answer_json": {
+          "status_code": 200,
+          "elapsed_seconds": 0.016
+        },
+        "qa_graph_state": {
+          "status_code": 200,
+          "elapsed_seconds": 0.004
+        },
+        "qa_graph_trace": {
+          "status_code": 200,
+          "elapsed_seconds": 0.027
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "academic-paper-workflow-skill",
+      "repo_url": "C:/Users/Liaoke/Desktop/RepoMentor 多智能体仓库学习助手/repomentor/backend/.repomentor_cache/repos/huier5635-cmd-academic-paper-workflow-skill-005ec74f4af7",
+      "category": "cached-public-fallback",
+      "expected": "success",
+      "warnings": [],
+      "errors": [],
+      "analyze_status_code": 200,
+      "elapsed_seconds": 0.112,
+      "analyze_status": "success",
+      "repo_id": "39947080d7b4",
+      "analysis_session_id": "983aeeb5-2c93-4add-9864-f6791e734f57",
+      "files_count": 13,
+      "docs_files_count": 2,
+      "test_files_count": 0,
+      "quality_commands_count": 2,
+      "setup_commands_count": 0,
+      "run_commands_count": 0,
+      "test_commands_count": 2,
+      "build_commands_count": 0,
+      "lint_commands_count": 0,
+      "format_commands_count": 0,
+      "open_issues_count": 0,
+      "worker_success_count": 5,
+      "worker_partial_count": 3,
+      "worker_failed_count": 0,
+      "graph_status_code": 200,
+      "data_layer_status_code": 200,
+      "repository_graph_status_code": 200,
+      "symbols_count": 22,
+      "imports_count": 0,
+      "unresolved_imports_count": 0,
+      "docs_edges_count": 1,
+      "test_edges_count": 0,
+      "docs_chunks_count": 61,
+      "data_layer_checks": {
+        "summary": {
+          "files": 13,
+          "symbols": 22,
+          "imports": 0,
+          "tests": 0,
+          "docs": 1,
+          "doc_files": 2,
+          "doc_edges": 1,
+          "build_scripts": 0,
+          "languages": {
+            "markdown": 4,
+            "python": 4
+          },
+          "primary_language": "markdown",
+          "core_directories": [
+            "LICENSE"
+          ],
+          "key_files": [
+            "README.md"
+          ],
+          "readme_exists": true,
+          "quality_commands": 2,
+          "contributing_rules": 6,
+          "ci_rules": 0,
+          "development_workflow": "ready",
+          "new_contributor_checklist": 3,
+          "entrypoints": [],
+          "setup_commands": [],
+          "run_commands": [],
+          "test_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "build_commands": [],
+          "lint_commands": [],
+          "format_commands": [],
+          "type_check_commands": []
+        },
+        "details": {
+          "symbols": 22,
+          "imports": 0,
+          "tests": 0,
+          "docs": 1,
+          "quality_commands": 2
+        },
+        "mismatches": [],
+        "development_workflow_state": "ready"
+      },
+      "learning_path": {
+        "status_code": 200,
+        "elapsed_seconds": 0.022,
+        "errors": [],
+        "warnings": [],
+        "steps_count": 7,
+        "evidence_steps_count": 7,
+        "required_coverage": {
+          "README": true,
+          "启动": true,
+          "核心": true,
+          "测试": true,
+          "开发": true,
+          "任务": false
+        },
+        "self_check": {
+          "passed": true,
+          "evidence_coverage": 1.0,
+          "hallucination_risks": [],
+          "missing_evidence": [],
+          "missing_file_uncertainty": [],
+          "missing_command_uncertainty": [],
+          "hallucinated_file": [],
+          "hallucinated_command": [],
+          "hallucinated_issue": [],
+          "conflicts": [],
+          "suggested_action": "accept"
+        }
+      },
+      "development_workflow": {
+        "status_code": 200,
+        "elapsed_seconds": 0.004,
+        "errors": [],
+        "warnings": [],
+        "quality_commands_count": 2,
+        "setup_steps_count": 1,
+        "development_commands_count": 0,
+        "test_commands_count": 2,
+        "lint_commands_count": 0,
+        "format_commands_count": 0,
+        "type_check_commands_count": 0,
+        "build_commands_count": 0,
+        "contribution_rules_count": 3,
+        "pull_request_rules_count": 0,
+        "ci_rules_count": 0,
+        "code_style_rules_count": 0,
+        "uncertainties_count": 5,
+        "self_check": {
+          "passed": false,
+          "evidence_coverage": 0.3333333333333333,
+          "hallucination_risks": [
+            "lint is mentioned but no lint command evidence was found",
+            "format is mentioned but no format command evidence was found"
+          ],
+          "missing_evidence": [
+            "conclusion mentions 配置文件 but has no config/code evidence",
+            "evidence_code is empty; do not claim config/build directly supports the conclusion"
+          ],
+          "missing_file_uncertainty": [
+            "CONTRIBUTING.md"
+          ],
+          "missing_command_uncertainty": [
+            "lint",
+            "format"
+          ],
+          "hallucinated_file": [],
+          "hallucinated_command": [],
+          "hallucinated_issue": [],
+          "conflicts": [],
+          "suggested_action": "lower_confidence"
+        }
+      },
+      "issue_recommendations": {
+        "status_code": 200,
+        "elapsed_seconds": 0.027,
+        "errors": [],
+        "warnings": [],
+        "items_count": 2,
+        "internal_tasks_count": 2,
+        "github_issues_count": 0,
+        "self_check": {
+          "passed": true,
+          "evidence_coverage": 0.65,
+          "hallucination_risks": [],
+          "missing_evidence": [
+            "当前仓库没有 GitHub open issue 数据"
+          ],
+          "missing_file_uncertainty": [],
+          "missing_command_uncertainty": [],
+          "hallucinated_file": [],
+          "hallucinated_command": [],
+          "hallucinated_issue": [],
+          "conflicts": [],
+          "suggested_action": "accept"
+        }
+      },
+      "qa_results": [
+        {
+          "question": "这个仓库是干什么的？",
+          "status_code": 200,
+          "elapsed_seconds": 0.005,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "overview",
+          "evidence_count": 1,
+          "evidence_counts": {
+            "docs": 1,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 0.25,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "general_qa",
+            "evidence_count": 1,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "这个项目怎么启动？",
+          "status_code": 200,
+          "elapsed_seconds": 0.028,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "setup_run",
+          "evidence_count": 15,
+          "evidence_counts": {
+            "docs": 7,
+            "code": 1,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 5,
+            "commands": 2,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "setup_run",
+            "evidence_count": 15,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "怎么安装依赖？",
+          "status_code": 200,
+          "elapsed_seconds": 0.007,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "setup_run",
+          "evidence_count": 15,
+          "evidence_counts": {
+            "docs": 7,
+            "code": 1,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 5,
+            "commands": 2,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "setup_run",
+            "evidence_count": 15,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "怎么运行测试？",
+          "status_code": 200,
+          "elapsed_seconds": 0.007,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "setup_run",
+          "evidence_count": 15,
+          "evidence_counts": {
+            "docs": 7,
+            "code": 1,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 5,
+            "commands": 2,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "setup_run",
+            "evidence_count": 15,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "核心模块有哪些？",
+          "status_code": 200,
+          "elapsed_seconds": 0.007,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "core_modules",
+          "evidence_count": 5,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 4,
+            "issues": 0,
+            "graph": 1,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 0.8333333333333334,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "code_explanation",
+            "evidence_count": 5,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "我应该按什么顺序学习？",
+          "status_code": 200,
+          "elapsed_seconds": 0.025,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "learning_path",
+          "evidence_count": 25,
+          "evidence_counts": {
+            "docs": 11,
+            "code": 3,
+            "issues": 0,
+            "graph": 2,
+            "workflow": 2,
+            "commands": 4,
+            "internal_tasks": 3
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "learning_path",
+            "evidence_count": 25,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "开发流程和代码规范是什么？",
+          "status_code": 200,
+          "elapsed_seconds": 0.007,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "development_workflow",
+          "evidence_count": 17,
+          "evidence_counts": {
+            "docs": 9,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 6,
+            "commands": 2,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": false,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [
+              "lint is mentioned but no lint command evidence was found",
+              "format is mentioned but no format command evidence was found"
+            ],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [
+              "CONTRIBUTING.md"
+            ],
+            "missing_command_uncertainty": [
+              "lint",
+              "format"
+            ],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "lower_confidence"
+          },
+          "self_check_passed": false,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 2,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "development_workflow",
+            "evidence_count": 17,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "修改一个核心文件后应该跑哪些测试？",
+          "status_code": 200,
+          "elapsed_seconds": 0.006,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "general",
+          "evidence_count": 5,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 4,
+            "issues": 0,
+            "graph": 1,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "test_mapping",
+            "evidence_count": 5,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "适合新手的任务有哪些？",
+          "status_code": 200,
+          "elapsed_seconds": 0.006,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "beginner_tasks",
+          "evidence_count": 4,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 4
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "issue_recommendation",
+            "evidence_count": 4,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "这个项目有没有 CI / lint / format？",
+          "status_code": 200,
+          "elapsed_seconds": 0.007,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "development_workflow",
+          "evidence_count": 17,
+          "evidence_counts": {
+            "docs": 9,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 6,
+            "commands": 2,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": false,
+            "evidence_coverage": 1.0,
+            "hallucination_risks": [
+              "lint is mentioned but no lint command evidence was found",
+              "format is mentioned but no format command evidence was found"
+            ],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [
+              "CONTRIBUTING.md"
+            ],
+            "missing_command_uncertainty": [
+              "lint",
+              "format"
+            ],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "lower_confidence"
+          },
+          "self_check_passed": false,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 2,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "development_workflow",
+            "evidence_count": 17,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "入口文件在哪里？",
+          "status_code": 200,
+          "elapsed_seconds": 0.019,
+          "errors": [
+            "Response referenced nonexistent file paths: ['app.py', 'main.py']"
+          ],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "entrypoints",
+          "evidence_count": 1,
+          "evidence_counts": {
+            "docs": 0,
+            "code": 0,
+            "issues": 0,
+            "graph": 1,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": false,
+            "evidence_coverage": 0.5,
+            "hallucination_risks": [
+              "model output mentions file without graph evidence: app.py",
+              "model output mentions file without graph evidence: main.py"
+            ],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [
+              "app.py",
+              "main.py"
+            ],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "lower_confidence"
+          },
+          "self_check_passed": false,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 2,
+          "verifiable_commands": [],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "general_qa",
+            "evidence_count": 1,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [
+            "app.py",
+            "main.py"
+          ],
+          "missing_issue_numbers": []
+        },
+        {
+          "question": "这个仓库有哪些文档值得先看？",
+          "status_code": 200,
+          "elapsed_seconds": 0.027,
+          "errors": [],
+          "warnings": [],
+          "has_conclusion": true,
+          "question_category": "docs_recommendation",
+          "evidence_count": 2,
+          "evidence_counts": {
+            "docs": 2,
+            "code": 0,
+            "issues": 0,
+            "graph": 0,
+            "workflow": 0,
+            "commands": 0,
+            "internal_tasks": 0
+          },
+          "self_check": {
+            "passed": true,
+            "evidence_coverage": 0.6666666666666666,
+            "hallucination_risks": [],
+            "missing_evidence": [],
+            "missing_file_uncertainty": [],
+            "missing_command_uncertainty": [],
+            "hallucinated_file": [],
+            "hallucinated_command": [],
+            "hallucinated_issue": [],
+            "conflicts": [],
+            "suggested_action": "accept"
+          },
+          "self_check_passed": true,
+          "missing_evidence_count": 0,
+          "hallucination_risk_count": 0,
+          "verifiable_commands": [
+            "pytest",
+            "python -m pytest"
+          ],
+          "model_info": {
+            "provider": "mock",
+            "model": "mock-deterministic",
+            "prompt_type": "general_qa",
+            "evidence_count": 2,
+            "elapsed_ms": 0.0,
+            "success": true,
+            "used_llm": false,
+            "fallback_to_mock": false,
+            "error_message": ""
+          },
+          "command_hallucinations": [],
+          "missing_paths": [],
+          "missing_issue_numbers": []
+        }
+      ],
+      "debug_console_checks": {
+        "errors": [],
+        "warnings": [],
+        "graph_status": {
+          "status_code": 200,
+          "elapsed_seconds": 0.028
+        },
+        "agent_flow": {
+          "status_code": 200,
+          "elapsed_seconds": 0.015
+        },
+        "worker_outputs": {
+          "status_code": 200,
+          "elapsed_seconds": 0.016
+        },
+        "data_layer": {
+          "status_code": 200,
+          "elapsed_seconds": 0.015
+        },
+        "repository_graph": {
+          "status_code": 200,
+          "elapsed_seconds": 0.029
+        },
+        "analysis_graph_state": {
+          "status_code": 200,
+          "elapsed_seconds": 0.015
+        },
+        "analysis_graph_trace": {
+          "status_code": 200,
+          "elapsed_seconds": 0.003
+        },
+        "shared_memory": {
+          "status_code": 200,
+          "elapsed_seconds": 0.027
+        },
+        "retrieval_trace": {
+          "status_code": 200,
+          "elapsed_seconds": 0.015
+        },
+        "self_check": {
+          "status_code": 200,
+          "elapsed_seconds": 0.004
+        },
+        "final_answer_json": {
+          "status_code": 200,
+          "elapsed_seconds": 0.027
+        },
+        "qa_graph_state": {
+          "status_code": 200,
+          "elapsed_seconds": 0.015
+        },
+        "qa_graph_trace": {
+          "status_code": 200,
+          "elapsed_seconds": 0.004
+        }
+      },
+      "pass": true
+    }
+  ],
+  "invalid_repositories": [
+    {
+      "name": "missing-repository",
+      "repo_url": "https://github.com/not-exist-owner/not-exist-repo",
+      "category": "invalid",
+      "expected": "error",
+      "warnings": [],
+      "errors": [],
+      "analyze_status_code": 400,
+      "elapsed_seconds": 1.598,
+      "analyze_status": "expected_error",
+      "error_detail": "git clone failed: Cloning into '.repomentor_cache\\repos\\not-exist-owner-not-exist-repo-7c5e8381a583'...\nremote: Repository not found.\nfatal: repository 'https://github.com/not-exist-owner/not-exist-repo/' not found"
+    },
+    {
+      "name": "empty-url",
+      "repo_url": "",
+      "category": "invalid",
+      "expected": "error",
+      "warnings": [],
+      "errors": [],
+      "analyze_status_code": 400,
+      "elapsed_seconds": 0.004,
+      "analyze_status": "expected_error",
+      "error_detail": "repo_url must be a non-empty existing local path or a GitHub repository URL"
+    },
+    {
+      "name": "non-github-url",
+      "repo_url": "https://example.com/test",
+      "category": "invalid",
+      "expected": "error",
+      "warnings": [],
+      "errors": [],
+      "analyze_status_code": 400,
+      "elapsed_seconds": 0.004,
+      "analyze_status": "expected_error",
+      "error_detail": "repo_url must be an existing local path or a GitHub repository URL"
+    },
+    {
+      "name": "bad-format-url",
+      "repo_url": "github.com/bad",
+      "category": "invalid",
+      "expected": "error",
+      "warnings": [],
+      "errors": [],
+      "analyze_status_code": 400,
+      "elapsed_seconds": 0.019,
+      "analyze_status": "expected_error",
+      "error_detail": "repo_url must be an existing local path or a GitHub repository URL"
+    }
+  ],
+  "qa_concurrency": {
+    "total_requests": 36,
+    "success_count": 36,
+    "failure_count": 0,
+    "average_latency": 0.077,
+    "p95_latency": 0.188,
+    "max_latency": 0.268,
+    "timeout_count": 0,
+    "500_count": 0,
+    "elapsed_seconds": 1.392,
+    "failures": [],
+    "provider": "mock"
+  },
+  "frontend_checks": {
+    "user_hides_agent_flow": true,
+    "user_hides_worker_outputs": true,
+    "user_hides_shared_memory": true,
+    "user_model_has_no_password_input": true,
+    "debug_has_agent_flow": true,
+    "debug_has_worker_outputs": true,
+    "debug_has_shared_memory": true,
+    "debug_has_retrieval_trace": true,
+    "debug_has_final_json": true,
+    "debug_has_langgraph_panel": true,
+    "debug_model_password_input": true,
+    "debug_trace_export": true,
+    "model_control_full_row": true,
+    "raw_json_default_folded": true,
+    "api_key_not_in_frontend_defaults": true
+  },
+  "summary": {
+    "normal_repositories_tested": 3,
+    "normal_repositories_analyze_success": 3,
+    "invalid_repositories_tested": 4,
+    "invalid_repositories_expected_error": 4,
+    "average_analyze_time": 8.617,
+    "average_qa_time": 0.044,
+    "p95_qa_latency": 0.102,
+    "qa_success_rate": 0.9722,
+    "evidence_coverage_rate": 1.0,
+    "command_hallucination_count": 0,
+    "self_check_pass_rate": 0.8056,
+    "self_check_missing_rate": 0.0,
+    "issue_fallback_success_count": 3,
+    "no_issue_repos_count": 3,
+    "frontend_checks_passed": true,
+    "api_key_leak_detected": false
+  },
+  "pass_fail": {
+    "at_least_3_analyze_success": true,
+    "normal_files_gt_zero": true,
+    "qa_success_rate_gte_90": true,
+    "evidence_coverage_gte_85": true,
+    "command_hallucination_zero": true,
+    "self_check_missing_zero": true,
+    "issue_fallback_success": true,
+    "frontend_user_no_raw_debug": true,
+    "debug_trace_available": true,
+    "debug_langgraph_panel_available": true,
+    "no_api_key_leak": true,
+    "overall": "pass"
+  },
+  "known_bugs": [
+    "academic-paper-workflow-skill QA[入口文件在哪里？]: Response referenced nonexistent file paths: ['app.py', 'main.py']"
+  ],
+  "fixed_bugs": [
+    "调试页模型控制和智能体流程调试布局重叠已修复",
+    "模型控制用户/调试视图已拆分",
+    "模型 API 状态返回不泄露 API Key"
+  ],
+  "known_limitations": [
+    "DeepSeek 真模型调用依赖本地运行时 API Key；无 Key 时按设计回退 Mock。",
+    "压力测试不会并发 analyze 大仓库，只对已分析仓库做 QA 轻并发。",
+    "前端大数据分页/折叠目前主要通过静态源代码和浏览器抽样验证，未覆盖所有超大仓库场景。"
+  ],
+  "upgrade_recommendations": {
+    "P0": [
+      "修复压力测试发现的 bug",
+      "强化 evidence 和 SelfCheck",
+      "优化 setup_run 和 development workflow",
+      "完善 internal first tasks"
+    ],
+    "P1": [
+      "DeepSeek 深度接入 Code Explanation / LearningPath",
+      "多仓库评测集",
+      "README 和 Demo 视频",
+      "评测报告"
+    ],
+    "P2": [
+      "LangGraph 迁移",
+      "checkpoint",
+      "long-running repo analysis",
+      "MCP server",
+      "多用户任务队列"
+    ]
+  },
+  "evidence_coverage_breakdown": {
+    "by_category": {
+      "overview": {
+        "total": 3,
+        "covered": 3,
+        "docs": 9,
+        "code": 0,
+        "issues": 0,
+        "graph": 0,
+        "workflow": 0,
+        "commands": 0,
+        "internal_tasks": 0,
+        "coverage_rate": 1.0
+      },
+      "setup_run": {
+        "total": 9,
+        "covered": 9,
+        "docs": 78,
+        "code": 3,
+        "issues": 0,
+        "graph": 0,
+        "workflow": 54,
+        "commands": 111,
+        "internal_tasks": 0,
+        "coverage_rate": 1.0
+      },
+      "core_modules": {
+        "total": 3,
+        "covered": 3,
+        "docs": 0,
+        "code": 22,
+        "issues": 0,
+        "graph": 11,
+        "workflow": 0,
+        "commands": 0,
+        "internal_tasks": 0,
+        "coverage_rate": 1.0
+      },
+      "learning_path": {
+        "total": 3,
+        "covered": 3,
+        "docs": 29,
+        "code": 13,
+        "issues": 0,
+        "graph": 10,
+        "workflow": 13,
+        "commands": 19,
+        "internal_tasks": 9,
+        "coverage_rate": 1.0
+      },
+      "development_workflow": {
+        "total": 6,
+        "covered": 6,
+        "docs": 65,
+        "code": 2,
+        "issues": 0,
+        "graph": 0,
+        "workflow": 175,
+        "commands": 36,
+        "internal_tasks": 0,
+        "coverage_rate": 1.0
+      },
+      "general": {
+        "total": 3,
+        "covered": 3,
+        "docs": 0,
+        "code": 22,
+        "issues": 0,
+        "graph": 11,
+        "workflow": 0,
+        "commands": 0,
+        "internal_tasks": 0,
+        "coverage_rate": 1.0
+      },
+      "beginner_tasks": {
+        "total": 3,
+        "covered": 3,
+        "docs": 0,
+        "code": 0,
+        "issues": 0,
+        "graph": 0,
+        "workflow": 0,
+        "commands": 0,
+        "internal_tasks": 14,
+        "coverage_rate": 1.0
+      },
+      "entrypoints": {
+        "total": 3,
+        "covered": 3,
+        "docs": 0,
+        "code": 20,
+        "issues": 0,
+        "graph": 1,
+        "workflow": 0,
+        "commands": 0,
+        "internal_tasks": 0,
+        "coverage_rate": 1.0
+      },
+      "docs_recommendation": {
+        "total": 3,
+        "covered": 3,
+        "docs": 15,
+        "code": 0,
+        "issues": 0,
+        "graph": 0,
+        "workflow": 0,
+        "commands": 0,
+        "internal_tasks": 0,
+        "coverage_rate": 1.0
+      }
+    },
+    "by_source": {
+      "docs": 196,
+      "code": 82,
+      "issues": 0,
+      "graph": 33,
+      "workflow": 242,
+      "commands": 166,
+      "internal_tasks": 23
+    }
+  }
+}

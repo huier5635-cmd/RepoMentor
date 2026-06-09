@@ -1,0 +1,58 @@
+[
+  {
+    "name": "resilience-copilot-gemma4",
+    "repo_url": "https://github.com/huier5635-cmd/resilience-copilot-gemma4",
+    "category": "current-sample",
+    "expected": "success"
+  },
+  {
+    "name": "flask",
+    "repo_url": "https://github.com/pallets/flask",
+    "category": "python-web-framework",
+    "expected": "success"
+  },
+  {
+    "name": "requests",
+    "repo_url": "https://github.com/psf/requests",
+    "category": "python-tooling",
+    "expected": "success",
+    "large": true
+  },
+  {
+    "name": "typer",
+    "repo_url": "https://github.com/fastapi/typer",
+    "category": "python-cli",
+    "expected": "success"
+  },
+  {
+    "name": "vite-plugin-react",
+    "repo_url": "https://github.com/vitejs/vite-plugin-react",
+    "category": "js-ts-frontend",
+    "expected": "success",
+    "optional": true
+  },
+  {
+    "name": "missing-repository",
+    "repo_url": "https://github.com/not-exist-owner/not-exist-repo",
+    "category": "invalid",
+    "expected": "error"
+  },
+  {
+    "name": "empty-url",
+    "repo_url": "",
+    "category": "invalid",
+    "expected": "error"
+  },
+  {
+    "name": "non-github-url",
+    "repo_url": "https://example.com/test",
+    "category": "invalid",
+    "expected": "error"
+  },
+  {
+    "name": "bad-format-url",
+    "repo_url": "github.com/bad",
+    "category": "invalid",
+    "expected": "error"
+  }
+]
