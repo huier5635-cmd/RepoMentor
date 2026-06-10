@@ -19,6 +19,8 @@ submission_package/
 ppt_submission_package/
 RepoMentor_submission_package.zip
 RepoMentor_PPT_submission_package.zip
+docs/experiment_records.md
+docs/experiment_record_*.md
 __pycache__/
 *.pyc
 *.log
