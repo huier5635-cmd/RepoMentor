@@ -1613,3 +1613,47 @@ backend\.venv\Scripts\python.exe -m pytest
   - 未发现 `127.0.0.1:8000`
   - 未发现旧变量 `VITE_API_BASE`
   - 未发现真实 API Key 形态
+## 2026-06-10 移除 Demo 与部署交付内容
+
+### 目标
+
+- 公开仓库暂时不再提供在线部署、Docker 一键部署、录屏 Demo 脚本或提交地址占位模板。
+- 保留核心代码、本地运行方式、PPT 展示材料、设计依据、测试总结和完整交互轨迹。
+- 将根目录、前端和后端 README 统一改为中文说明。
+
+### 改动
+
+- 删除部署与 Demo 相关文件：
+  - `docker-compose.yml`
+  - `render.yaml`
+  - `backend/Dockerfile`
+  - `backend/.dockerignore`
+  - `backend/start.sh`
+  - `frontend/Dockerfile`
+  - `frontend/.dockerignore`
+  - `frontend/vercel.json`
+  - `scripts/check_deployment.py`
+  - `docs/demo_script.md`
+  - `docs/deployment_guide.md`
+  - `docs/submission_checklist.md`
+  - `docs/submission_urls.md`
+  - `presentation/demo_script.md`
+  - `presentation/submission_checklist.md`
+  - `presentation/assets/demo_user_annotated.png`
+  - `presentation/assets/demo_debug_annotated.png`
+- 重写中文 README：
+  - `README.md`
+  - `frontend/README.md`
+  - `backend/README.md`
+- 新增独立实验记录：
+  - `docs/experiment_record_remove_demo_deployment_20260610.md`
+
+### 验证
+
+- 搜索 README 中的部署占位地址、Docker 一键 Demo、Vercel、Render 和提交模板。
+- 确认公开说明只保留本地运行入口：后端 `8000`，前端 `5173`。
+
+### 已知取舍
+
+- PPT/PDF 已重命名为 `RepoMentor_Final_Presentation.pptx` 和 `RepoMentor_Final_Presentation.pdf`。
+- 当前仓库不再承诺在线部署或 Docker 一键运行。

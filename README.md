@@ -1,339 +1,220 @@
-# RepoMentor
+# RepoMentor：多智能体仓库学习助手
 
-> Structure-aware GitHub repository learning agent for newcomers.
-> 输入一个 GitHub 仓库链接，生成代码地图、学习路径、开发流程、入门任务和 evidence-grounded QA。
+> 输入一个公开 GitHub 仓库链接，生成仓库概览、代码地图、学习路径、开发流程、推荐任务和证据约束问答，帮助新贡献者更快理解陌生项目。
 
-[![Frontend](https://img.shields.io/badge/frontend-React%20%2B%20Vite-315f93)](#run-frontend)
-[![Backend](https://img.shields.io/badge/backend-FastAPI-117c73)](#run-backend)
-[![LLM](https://img.shields.io/badge/LLM-Mock%20%2F%20DeepSeek-6d5c8d)](#model-modes)
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![前端](https://img.shields.io/badge/前端-React%20%2B%20Vite-315f93)](#前端启动)
+[![后端](https://img.shields.io/badge/后端-FastAPI-117c73)](#后端启动)
+[![模型](https://img.shields.io/badge/模型-Mock%20%2F%20DeepSeek-6d5c8d)](#模型模式)
+[![许可证](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-RepoMentor helps new contributors move from “I do not know where to start” to a runnable learning path:
+RepoMentor 的目标不是做一个普通聊天框，而是先恢复仓库结构，再基于证据生成可验证的学习建议。
 
-- Repository Intelligence Graph: files, symbols, imports, docs, tests, commands.
-- Learning Path V2: goals, actions, observations, self-check questions.
-- Contribution Funnel: real issues first, internal first tasks when no open issue exists.
-- Evidence-grounded QA: answers trace back to docs, code, tests, issues, or graph evidence.
-- Debug Console: Agent Flow, Worker Outputs, Data Layer, Shared Memory, SelfCheck, FinalAnswer JSON.
+## 核心能力
 
-If this project is useful for your course, open-source onboarding, or agent evaluation work, a star helps others find it.
+- 仓库智能图谱：解析文件、符号、导入关系、测试关系、文档关系和质量命令。
+- 学习路径 V2：按“目标、操作、观察、自检”组织学习任务。
+- 开发流程识别：提取安装、启动、测试、评估、PR/CI 和风险提示。
+- 推荐任务：优先使用真实 open issue；没有 open issue 时生成 internal first tasks。
+- 证据约束问答：回答必须能追溯到 README、代码、测试、Issue 或 Repository Graph。
+- 调试控制台：展示 Agent Flow、Worker 输出、Data Layer、Shared Memory、SelfCheck 和 FinalAnswer JSON。
 
-## Screenshots
+## 页面预览
 
-| User Dashboard | Debug Console |
+| 用户页 | 调试页 |
 | --- | --- |
-| ![User Dashboard](presentation/assets/demo_user_annotated.png) | ![Debug Console](presentation/assets/demo_debug_annotated.png) |
+| ![用户页](presentation/assets/source_user_view.png) | ![调试页](presentation/assets/source_debug_view.png) |
 
-## Quick Start
+用户页面向新贡献者，只展示学习和贡献所需信息。调试页面向开发者和评审，用来验证系统确实执行了多 Worker 分析、证据检索和自检流程。
 
-### Docker One-Command Demo
+## 本地运行
 
-```bash
-docker compose up --build
-```
+当前公开仓库只保留本地开发运行方式，暂不提供公网访问地址、容器化一键运行文件或录屏脚本。
 
-Open:
+### 后端启动
 
-```text
-http://127.0.0.1:5173
-```
-
-`127.0.0.1` is local-only. For online demos, deploy the frontend to Vercel and backend to Render/Railway.
-
-### Presentation Materials
-
-- Final PPT: `presentation/RepoMentor_Final_Demo.pptx`
-- PDF: `presentation/RepoMentor_Final_Demo.pdf`
-- Speaker notes: `presentation/speaker_notes.md`
-- Design basis: `docs/design_basis.md`
-
-## Why RepoMentor Is Not Just A RAG Chatbot
-
-| Design | What it means |
-| --- | --- |
-| Structure first | Build the repository graph before answering. |
-| Evidence constrained | Do not invent commands, files, tests, or issues. |
-| User/debug split | User page teaches; debug page proves execution traces. |
-| Evaluatable | Track evidence coverage, command hallucination, SelfCheck. |
-
-## Project Status
-
-- Demo chain: runnable locally with Docker or dev servers.
-- Model mode: Mock by default; DeepSeek is optional and key-based.
-- Stress finding: earlier acceptance failed due to insufficient evidence coverage, not system crash.
-- Next priorities: EvidenceBuilder, stronger SelfCheck, online deployment hardening, LangGraph upgrade.
-
-RepoMentor is a GitHub repository learning and issue recommendation MVP for new contributors. It uses a structure-first architecture: deterministic repository analysis builds typed artifacts first, then the orchestrator retrieves evidence and formats evidence-grounded answers.
-
-## Architecture
-
-RepoMentor is organized into three layers:
-
-1. Agent orchestration layer: `backend/app/core`, `backend/app/workers`, `backend/app/answer`
-2. Data layer: `backend/app/data_layer`, `backend/app/storage`
-3. Output layer: `FinalAnswer` schema, `EvidenceFormatter`, and frontend QA/Evidence/SelfCheck panels
-
-Workers are independent files and classes. They do not chat with each other. The `Orchestrator` calls workers, writes every `WorkerOutput` into `SharedWorkingMemory`, generates a candidate answer, evaluates it, optimizes it, then returns a `FinalAnswer`.
-
-## LangGraph Migration
-
-RepoMentor now includes an optional LangGraph-compatible orchestration layer for gradual migration. It is disabled by default, keeps `LegacyOrchestrator` as the stable path, and falls back to legacy if graph execution fails.
-
-```env
-LANGGRAPH_ENABLED=false
-LANGGRAPH_CHECKPOINT_BACKEND=memory
-LANGGRAPH_SQLITE_PATH=.repomentor_cache/langgraph_checkpoints.sqlite
-LANGGRAPH_TRACE_ENABLED=true
-LANGGRAPH_MAX_RETRIES=2
-```
-
-Debug endpoints:
-
-- `GET /api/graph/status`
-- `GET /api/debug/graph/{thread_id}/state`
-- `GET /api/debug/graph/{thread_id}/trace`
-- `POST /api/debug/graph/{thread_id}/resume`
-
-See `docs/langgraph_migration.md` for the migration plan, thread id conventions, and stress test comparison workflow.
-
-## 可运行 Demo
-
-### 方案一：在线部署
-
-前端地址：
-
-```text
-https://your-frontend-domain.vercel.app
-```
-
-后端健康检查：
-
-```text
-https://your-backend-domain.onrender.com/api/health
-```
-
-说明：
-
-- 在线 Demo 默认使用 `LLM_PROVIDER=mock`，不产生模型费用。
-- 如果需要演示 DeepSeek，请只在 Render/Railway 后台环境变量中配置 `DEEPSEEK_API_KEY`。
-- 不要提交、截图或公开 API Key。
-- 前端生产环境必须配置 `VITE_API_BASE_URL=https://your-backend-domain.onrender.com`，不能调用 localhost。
-- 后端生产环境必须配置 `BACKEND_CORS_ORIGINS=https://your-frontend-domain.vercel.app`。
-
-推荐部署文件：
-
-- Vercel 前端：`frontend/vercel.json`
-- Render 后端：`render.yaml`
-- Railway 后端 Docker：`backend/Dockerfile`
-
-部署后运行检查：
-
-```bash
-python scripts/check_deployment.py \
-  --frontend-url https://your-frontend-domain.vercel.app \
-  --backend-url https://your-backend-domain.onrender.com
-```
-
-检查报告会写入 `reports/deployment_check.md`。
-
-### 方案二：Docker 一键本地运行
-
-```bash
-docker compose up --build
-```
-
-启动后访问：
-
-```text
-http://127.0.0.1:5173
-```
-
-注意：`127.0.0.1` 是本地地址，只能在运行 Docker 的电脑上访问，不能作为在线访问地址提交。
-
-### 本地开发
-
-后端：
-
-```bash
+```powershell
 cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-前端：
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-本地前端默认读取：
-
-```env
-VITE_API_BASE_URL=http://127.0.0.1:8000
-```
-
-## Run Backend
-
-```bash
-cd repomentor/backend
 python -m venv .venv
-.venv\Scripts\activate
+.\.venv\Scripts\activate
 pip install -r requirements.txt
 copy .env.example .env
 uvicorn app.main:app --reload --port 8000
 ```
 
-## Model Modes
+后端健康检查：
 
-RepoMentor keeps deterministic repository analysis as the source of truth. Files, commands, symbols, issues, test edges, doc edges, imports and dependencies come from the Repository Intelligence Graph. The model only explains and summarizes retrieved evidence.
-
-The default requested provider is DeepSeek:
-
-```env
-LLM_PROVIDER=deepseek
-DEEPSEEK_MODEL=deepseek-chat
-DEEPSEEK_BASE_URL=https://api.deepseek.com
+```text
+http://127.0.0.1:8000/api/health
 ```
 
-If `DEEPSEEK_API_KEY` is missing, RepoMentor does not crash. It reports `provider_requested=deepseek`, uses `provider_active=mock`, sets `fallback_to_mock=true`, and shows the reason `missing_deepseek_api_key`.
+### 前端启动
 
-### Mock Mode
-
-- Free.
-- Does not call a real model.
-- Suitable for deterministic repository analysis, local development, tests and demos without a key.
-
-### DeepSeek Mode
-
-- Default real model provider.
-- Requires `DEEPSEEK_API_KEY`.
-- Default model: `deepseek-chat`.
-- Base URL: `https://api.deepseek.com`.
-- `deepseek-reasoner` is available from the debug model control panel.
-
-### Configuration Option 1: `backend/.env`
-
-```env
-GITHUB_TOKEN=
-
-LLM_PROVIDER=deepseek
-
-DEEPSEEK_API_KEY=your_key_here
-DEEPSEEK_MODEL=deepseek-chat
-DEEPSEEK_BASE_URL=https://api.deepseek.com
-
-OPENAI_API_KEY=
-OPENAI_MODEL=
-OPENAI_BASE_URL=https://api.openai.com/v1
-
-LLM_TEMPERATURE=0.2
-LLM_MAX_TOKENS=1200
-```
-
-### Configuration Option 2: Debug Console Runtime Input
-
-Open `/debug/model`, enter the API Key locally, save the configuration, then test the connection. Runtime keys are kept in backend memory only unless you explicitly choose to write `backend/.env`.
-
-### Safety Notes
-
-- Do not commit `.env` or `backend/.env`.
-- Do not write API keys into code.
-- Do not put API keys into frontend default values.
-- Do not screenshot or share pages that reveal sensitive credentials.
-- If a key leaks, revoke it immediately and generate a new one.
-- User pages never show the API Key input, Base URL input, raw provider state, fallback internals or LLM call logs. Those controls live in the Debug Console.
-
-## Run Frontend
-
-```bash
-cd repomentor/frontend
+```powershell
+cd frontend
 npm install
 npm run dev
 ```
 
-Open `http://localhost:5173`.
+本地访问：
 
-## 如何展示项目
+```text
+http://127.0.0.1:5173
+```
 
-打开前端后，在首页输入公开 GitHub 仓库链接。分析完成后，系统会进入：
+前端默认读取：
 
-- 用户页：`/repos/{repo_id}`
-- 调试页：`/debug/{repo_id}?tab=model`
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
 
-如果没有 DeepSeek API Key，可以切换到 Mock 模式完成演示。Mock 模式不会调用真实模型，但仓库解析、代码地图、学习路径、开发流程、推荐任务、证据问答和调试轨迹仍可运行。
+## 使用流程
 
-建议按 3–5 分钟录屏脚本展示：
+1. 打开 `http://127.0.0.1:5173`。
+2. 输入公开 GitHub 仓库链接。
+3. 点击分析仓库。
+4. 在用户页查看仓库概览、代码地图、学习路径、开发流程和推荐任务。
+5. 在问答区提问，例如：`这个项目怎么启动？`
+6. 如需验证内部执行轨迹，进入 `/debug/{repo_id}` 查看调试控制台。
 
-1. 输入 GitHub 仓库链接。
-2. 展示仓库概览：文件数、语言、核心目录、入口文件、安装/启动/测试命令。
-3. 展示代码地图：文件类型、核心模块、测试关系、文档关系。
-4. 展示学习路径：Learning Path V2、架构导览、模块卡、双语术语。
-5. 展示开发流程：setup、run、test、PR/CI、风险与不确定项。
-6. 展示推荐任务：open issue 为 0 时的 internal first tasks，并说明它们不是 GitHub Issue。
-7. 在 QA 中提问：`这个项目怎么启动`。
-8. 展示回答中的推荐启动方式、测试命令、风险提示和证据来源。
-9. 切换调试控制台，展示 Agent Flow、Data Layer、Retrieval Trace、Shared Memory、SelfCheck 和 FinalAnswer JSON。
+## 模型模式
 
-展示时需要强调：
+RepoMentor 的仓库事实来自确定性解析和 Repository Intelligence Graph，模型只负责解释、组织和润色已检索到的证据。
 
-- 用户页只显示学习和贡献所需的信息。
-- 调试页显示 Agent Flow、Worker Outputs、Data Layer、SelfCheck、FinalAnswer JSON 等内部信息。
-- RepoMentor 是 evidence-grounded answer：文件、命令、测试、文档、Issue、CI 等事实来自确定性图谱和 API，LLM 只做解释、翻译润色和学习反馈。
-- 压力测试早期 FAIL 的主要原因是 evidence 覆盖不足和结构映射不足，不是系统崩溃；后续通过 EvidenceBuilder、Test/Docs edge、命令去重、Shared Memory evidence 和 SelfCheck 修复。
-- 下一阶段路线是 EvidenceBuilder、DeepSeek 真实效果评估、LangGraph 默认编排和部署展示。
+默认可配置 DeepSeek：
 
-最终展示材料位于：
+```env
+LLM_PROVIDER=deepseek
+DEEPSEEK_MODEL=deepseek-chat
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+DEEPSEEK_API_KEY=your_key_here
+```
 
-- PPT：`docs/RepoMentor_最终展示.pptx`
-- Demo 录屏脚本：`docs/demo_script.md`
-- PPT 提纲：`docs/presentation_outline.md`
-- 完整交互轨迹：`docs/interaction_trace.md`
-- 测试总结：`docs/testing_summary.md`
-- 升级计划：`docs/upgrade_plan.md`
-- 部署指南：`docs/deployment_guide.md`
-- 提交地址清单：`docs/submission_urls.md`
-- 提交清单：`docs/submission_checklist.md`
+如果没有配置 `DEEPSEEK_API_KEY`，后端会回退到 Mock Provider，不会崩溃，也不会产生模型费用。
 
-## Frontend Pages
+安全要求：
 
-RepoMentor has two separate frontend surfaces:
+- 不要提交 `.env` 或 `backend/.env`。
+- 不要把 API Key 写入代码、README、截图或前端默认值。
+- 如果 Key 泄露，请立即在模型平台撤销并重新生成。
 
-- User page: open `http://localhost:5173/` and enter a GitHub repository URL. After analysis, the app navigates to `/repos/{repo_id}` and shows the repository overview, code map, learning path, development workflow, recommended issues, QA, and simplified evidence.
-- Debug Console: open `/debug/{repo_id}` after a repository has been analyzed, or `/debug/session/{session_id}` when you have a session id. This page is for development debugging and demos of technical internals; it is not intended for ordinary users.
+## 系统架构
 
-The user page intentionally does not show Agent Flow, worker raw output, shared memory JSON, retrieval trace, evaluator raw output, optimizer raw output, or final-answer raw JSON. Those details live in Debug Console.
+RepoMentor 分为五层：
 
-## Quick API Check
+1. 前端层：用户页和调试控制台。
+2. 后端 API 层：FastAPI、REST API、Debug API。
+3. Agent 层：Orchestrator、多 Worker、Evaluator、Optimizer。
+4. 数据层：Repository Intelligence Graph、Hybrid Retrieval Index、Shared Working Memory、Evidence Store。
+5. 外部服务：GitHub API、DeepSeek 或 Mock Provider。
 
-```bash
-curl -X POST http://localhost:8000/api/repos/analyze ^
-  -H "Content-Type: application/json" ^
+Worker 之间不进行开放式群聊。`Orchestrator` 统一调度 Worker，把输出写入 `SharedWorkingMemory`，再进行证据检索、答案生成、自检和修正。
+
+## 设计依据
+
+RepoMentor 的模块设计明确区分“设计依据”和“数据证据”：
+
+- 设计依据：解释为什么模块这样设计，例如任务化学习路径、渐进式脚手架、Repository Intelligence Graph、EvidenceBuilder、SelfCheck。
+- 数据证据：解释本次输出来自哪里，例如 README、入口文件、测试文件、质量命令、Issue、文档切片。
+
+详细说明见：
+
+- `docs/design_basis.md`
+- `presentation/design_basis.md`
+
+## 前端页面
+
+- 用户页：`/` 或 `/repos/{repo_id}`，面向新贡献者，展示仓库概览、代码地图、学习路径、开发流程、推荐任务、仓库问答和简化证据。
+- 调试页：`/debug/{repo_id}` 或 `/debug/session/{session_id}`，面向开发者和评审，展示 Agent Flow、Worker Outputs、Data Layer、Retrieval Trace、Shared Memory、SelfCheck、FinalAnswer JSON 和模型状态。
+
+用户页不会展示原始 Worker JSON、共享记忆、检索轨迹、Evaluator 原始输出或 FinalAnswer 原始 JSON。这些信息只保留在调试页。
+
+## 常用 API
+
+分析仓库：
+
+```powershell
+curl -X POST http://127.0.0.1:8000/api/repos/analyze `
+  -H "Content-Type: application/json" `
   -d "{\"repo_url\":\"https://github.com/pallets/flask\"}"
 ```
 
-## MVP Scope
+获取开发流程：
 
-- Python AST symbol/import extraction
-- JS/TS regex-based symbol/import extraction
-- Development Workflow Worker for contribution process, quality commands, PR templates and CI rules
-- GitHub issue fetching through the public REST API
-- Local JSON cache for analyzed repositories
-- Keyword retrieval plus metadata filters
-- Vector index placeholder using simple similarity fallback
-- Mock LLM service; repository facts never come from the LLM
-
-## Development Workflow
-
-After analyzing a repository, open the `Development Workflow` tab or call:
-
-```bash
-curl http://localhost:8000/api/repos/{repo_id}/development-workflow
+```powershell
+curl http://127.0.0.1:8000/api/repos/{repo_id}/development-workflow
 ```
 
-The response includes setup steps, test/lint/format/type-check/build commands, branch and commit rules, PR workflow, CI rules, evidence, risks and uncertainties.
+模型状态：
 
-## Experiment Records
+```powershell
+curl http://127.0.0.1:8000/api/model/status
+```
 
-Every implementation change should update `docs/experiment_records.md` with the goal, changed modules, verification commands, browser/API checks, screenshots or artifacts, and known limits.
+## 测试与验证
+
+后端测试：
+
+```powershell
+cd backend
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+前端构建：
+
+```powershell
+cd frontend
+npm run build
+```
+
+Smoke test：
+
+```powershell
+python scripts/smoke_test.py
+```
+
+压力测试结论记录在 `docs/testing_summary.md`。早期压力测试失败的主要原因是 evidence coverage 不足，不是系统崩溃；后续路线优先补强 EvidenceBuilder、SelfCheck 和 DeepSeek 实测。
+
+## 展示材料
+
+当前仓库保留 PPT 和文档型展示材料：
+
+- PPT：`presentation/RepoMentor_Final_Presentation.pptx`
+- PDF：`presentation/RepoMentor_Final_Presentation.pdf`
+- 讲稿：`presentation/speaker_notes.md`
+- 展示提纲：`presentation/presentation_outline.md`
+- 交互轨迹：`docs/interaction_trace.md`
+- 测试总结：`docs/testing_summary.md`
+- 升级计划：`docs/upgrade_plan.md`
+
+不再保留公网访问占位地址、容器化发布文件、录屏脚本或提交地址模板。
+
+## 项目范围
+
+当前版本已经实现：
+
+- Python AST 符号和导入解析。
+- JS/TS 轻量级符号和导入解析。
+- README、docs、测试文件和质量命令提取。
+- Docs Worker、Test Worker、Development Workflow Worker 等 8 个 Worker。
+- Issue 推荐与 internal first tasks fallback。
+- Evidence-grounded QA、SelfCheck、FinalAnswer JSON。
+- 用户页和调试页分离。
+- Mock Provider 和 DeepSeek Provider 配置入口。
+
+下一阶段重点：
+
+- EvidenceBuilder 覆盖率提升。
+- DeepSeek 小仓库真实效果评估。
+- LangGraph 默认状态图编排。
+- 多仓库评测和更稳定的贡献任务推荐。
+
+## 开源说明
+
+本项目使用 MIT License。欢迎用于课程项目、开源新人引导、仓库理解工具和 Agent 可观测性实验。如果这个项目对你有帮助，欢迎 star、fork 或基于 issue 提建议。
+
+## 实验记录
+
+每次实现变更都会保留实验记录。核心记录入口：
+
+- `docs/experiment_records.md`
+- `docs/interaction_trace.md`
