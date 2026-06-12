@@ -210,11 +210,4 @@ python scripts/smoke_test.py
 
 ## 开源说明
 
-本项目使用 MIT License。欢迎用于课程项目、开源新人引导、仓库理解工具和 Agent 可观测性实验。如果这个项目对你有帮助，欢迎 star、fork 或基于 issue 提建议。
-
-## 实验记录
-
-每次实现变更都会保留实验记录。核心记录入口：
-
-- `docs/experiment_records.md`
-- `docs/interaction_trace.md`
+本项目使用 MIT License。欢迎用于课程项目、开源新人引导、仓库理解工具和 Agent 可观测性研究。如果这个项目对你有帮助，欢迎 star、fork 或基于 issue 提建议。
